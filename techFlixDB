@@ -1,0 +1,478 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.0
+-- Dumped by pg_dump version 14.0
+
+-- Started on 2021-11-05 16:25:16 CET
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 212 (class 1259 OID 16405)
+-- Name: directors; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.directors (
+    directorid integer NOT NULL,
+    name character varying(50) NOT NULL,
+    bio character varying(1000),
+    birthyear date,
+    deathyear date
+);
+
+
+ALTER TABLE public.directors OWNER TO postgres;
+
+--
+-- TOC entry 211 (class 1259 OID 16404)
+-- Name: directors_directorid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.directors_directorid_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.directors_directorid_seq OWNER TO postgres;
+
+--
+-- TOC entry 3623 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: directors_directorid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.directors_directorid_seq OWNED BY public.directors.directorid;
+
+
+--
+-- TOC entry 210 (class 1259 OID 16396)
+-- Name: genres; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.genres (
+    genreid integer NOT NULL,
+    name character varying(50) NOT NULL,
+    description character varying(1000)
+);
+
+
+ALTER TABLE public.genres OWNER TO postgres;
+
+--
+-- TOC entry 209 (class 1259 OID 16395)
+-- Name: genres_genreid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.genres_genreid_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.genres_genreid_seq OWNER TO postgres;
+
+--
+-- TOC entry 3624 (class 0 OID 0)
+-- Dependencies: 209
+-- Name: genres_genreid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.genres_genreid_seq OWNED BY public.genres.genreid;
+
+
+--
+-- TOC entry 214 (class 1259 OID 16416)
+-- Name: movies; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.movies (
+    movieid integer NOT NULL,
+    title character varying(50) NOT NULL,
+    description character varying(1000),
+    directorid integer NOT NULL,
+    genreid integer NOT NULL,
+    imageurl character varying(300),
+    featured boolean
+);
+
+
+ALTER TABLE public.movies OWNER TO postgres;
+
+--
+-- TOC entry 213 (class 1259 OID 16415)
+-- Name: movies_movieid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.movies_movieid_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.movies_movieid_seq OWNER TO postgres;
+
+--
+-- TOC entry 3625 (class 0 OID 0)
+-- Dependencies: 213
+-- Name: movies_movieid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.movies_movieid_seq OWNED BY public.movies.movieid;
+
+
+--
+-- TOC entry 218 (class 1259 OID 16442)
+-- Name: user_movies; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.user_movies (
+    usermovieid integer NOT NULL,
+    userid integer,
+    movieid integer
+);
+
+
+ALTER TABLE public.user_movies OWNER TO postgres;
+
+--
+-- TOC entry 217 (class 1259 OID 16441)
+-- Name: user_movies_usermovieid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.user_movies_usermovieid_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.user_movies_usermovieid_seq OWNER TO postgres;
+
+--
+-- TOC entry 3626 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: user_movies_usermovieid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.user_movies_usermovieid_seq OWNED BY public.user_movies.usermovieid;
+
+
+--
+-- TOC entry 216 (class 1259 OID 16435)
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    userid integer NOT NULL,
+    username character varying(50) NOT NULL,
+    password character varying(50) NOT NULL,
+    email character varying(50) NOT NULL,
+    birth_date date
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- TOC entry 215 (class 1259 OID 16434)
+-- Name: users_userid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.users_userid_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_userid_seq OWNER TO postgres;
+
+--
+-- TOC entry 3627 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: users_userid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.users_userid_seq OWNED BY public.users.userid;
+
+
+--
+-- TOC entry 3451 (class 2604 OID 16408)
+-- Name: directors directorid; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.directors ALTER COLUMN directorid SET DEFAULT nextval('public.directors_directorid_seq'::regclass);
+
+
+--
+-- TOC entry 3450 (class 2604 OID 16399)
+-- Name: genres genreid; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.genres ALTER COLUMN genreid SET DEFAULT nextval('public.genres_genreid_seq'::regclass);
+
+
+--
+-- TOC entry 3452 (class 2604 OID 16419)
+-- Name: movies movieid; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.movies ALTER COLUMN movieid SET DEFAULT nextval('public.movies_movieid_seq'::regclass);
+
+
+--
+-- TOC entry 3454 (class 2604 OID 16445)
+-- Name: user_movies usermovieid; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_movies ALTER COLUMN usermovieid SET DEFAULT nextval('public.user_movies_usermovieid_seq'::regclass);
+
+
+--
+-- TOC entry 3453 (class 2604 OID 16438)
+-- Name: users userid; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN userid SET DEFAULT nextval('public.users_userid_seq'::regclass);
+
+
+--
+-- TOC entry 3611 (class 0 OID 16405)
+-- Dependencies: 212
+-- Data for Name: directors; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.directors (directorid, name, bio, birthyear, deathyear) VALUES (9, 'Martyn Burke', 'Martyn Burke is a Canadian director, novelist and screenwriter.', '1952-09-14', NULL);
+INSERT INTO public.directors (directorid, name, bio, birthyear, deathyear) VALUES (10, 'Morten Tyldum', 'Morten Tyldum is a Norwegian film director. He is also known for directing the science fiction drama Passengers and the thriller Headhunters which is based on a novel by Jo Nesbø.', '1967-05-19', NULL);
+INSERT INTO public.directors (directorid, name, bio, birthyear, deathyear) VALUES (11, 'Shawn Levy', 'Shawn Levy is a Canadian film director, producer, and actor. He has also directed the Night at the Museum series and some episodes of the Netflix series Stranger Things.', '1968-07-23', NULL);
+INSERT INTO public.directors (directorid, name, bio, birthyear, deathyear) VALUES (12, 'David Fincher', 'David Andrew Leo Fincher is an American film director. For The Social Network he won the Golden Globe Award. He also directed the thriller The Girl with the Dragon Tattoo. Big commercial successes were The Curious Case of Benjamin Button and Gone Girl. For the Netflix series House of Cards David Fincher served as an executive producer and director. Fincher also directed TV commercials for clients like Nike, Coca-Cola and Chanel and music videos for Madonna, The Rolling Stones, Michael Jackson, Aerosmith and many others.', '1962-08-28', NULL);
+INSERT INTO public.directors (directorid, name, bio, birthyear, deathyear) VALUES (13, 'Steven Lisberger', 'Steven Lisberger is an American film director, producer. The inspiration for Tron dates back to the 70s, when Lisberger became intrigued with video games after seeing Pong.', '1951-04-24', NULL);
+INSERT INTO public.directors (directorid, name, bio, birthyear, deathyear) VALUES (14, 'Iain Softley', 'Iain Softley is an English film director, producer, and screenwriter. His other films include Backbeat about the early years of The Beatles.', '1956-10-28', NULL);
+INSERT INTO public.directors (directorid, name, bio, birthyear, deathyear) VALUES (15, 'Peter Howitt', 'Peter Howitt is a British actor and film director. His debut as a director was the movie Sliding doors with Gwyneth Paltrow.', '1957-05-05', NULL);
+INSERT INTO public.directors (directorid, name, bio, birthyear, deathyear) VALUES (16, 'Joshua Michael Stern', 'Joshua Michael Stern is an American film director and screenwriter. He also created the political comedy television series Graves starring Nick Nolte.', NULL, NULL);
+INSERT INTO public.directors (directorid, name, bio, birthyear, deathyear) VALUES (17, 'Alex Garland', 'Alex Garland is an English writer and filmmaker. In the 90s he rose to prominence as a novelist with his novel The Beach, which was later adapted into a film directed by Danny Boyle and starring Leonardo DiCaprio. The science fiction thriller Ex Machina was Garlands directorial debut.', '1970-05-26', NULL);
+INSERT INTO public.directors (directorid, name, bio, birthyear, deathyear) VALUES (18, 'Spike Jonze', 'Adam Spiegel, known professionally as Spike Jonze, is an American filmmaker, photographer, musician, and actor. His work includes film, skateboard videos, television, music videos, and commercials.', '1969-10-22', NULL);
+
+
+--
+-- TOC entry 3609 (class 0 OID 16396)
+-- Dependencies: 210
+-- Data for Name: genres; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.genres (genreid, name, description) VALUES (1, 'Thriller', 'Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves excitement and suspense in the audience.');
+INSERT INTO public.genres (genreid, name, description) VALUES (2, 'Comedy', 'Comedy is a genre of film in which the main emphasis is on humor. These films are designed to make the audience laugh through amusement and most often work by exaggerating characteristics for humorous effect.');
+INSERT INTO public.genres (genreid, name, description) VALUES (3, 'Biopic', 'A biopic tells the life story of a historical person or at least the most historically important years of their lives.');
+INSERT INTO public.genres (genreid, name, description) VALUES (4, 'Drama', 'A Drama is focused on emotions and defined by conflict, often looking to reality rather than sensationalism.');
+INSERT INTO public.genres (genreid, name, description) VALUES (5, 'Science Fiction', 'Science-fiction films are defined by a combination of imaginative speculation and a scientific or technological premise, making use of the changes and trajectory of technology and science.');
+INSERT INTO public.genres (genreid, name, description) VALUES (6, 'Crime', 'Crime movies focus on criminal acts and especially on the investigation, either by an amateur or a professional detective, of a serious crime, generally a murder.');
+INSERT INTO public.genres (genreid, name, description) VALUES (7, 'Romance', 'Primarily focuses on the relationship and romantic love between two people.');
+
+
+--
+-- TOC entry 3613 (class 0 OID 16416)
+-- Dependencies: 214
+-- Data for Name: movies; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.movies (movieid, title, description, directorid, genreid, imageurl, featured) VALUES (4, 'The Pirates of Silicon Valley', 'This is a must watch movie for everyone who wants to know how personal computers came into the world. The biographical drama tells how Steve Jobs and Bill Gates came up with the idea of creating a computer that could be used by everyone and shows the methodologies they used. It also explores the impact that the rivalry between Jobs and Gates had on the development of the personal computer.', 9, 3, NULL, true);
+INSERT INTO public.movies (movieid, title, description, directorid, genreid, imageurl, featured) VALUES (5, 'The Imitation Game', 'The Imitation Game should be on your watchlist if you are interested in machine learning and the history of computer science. This historical drama shows how the British mathematician Alan Turing and his team find a way to decode the German Enigma Code and help the Allies to win the war against Germany.', 10, 4, NULL, true);
+INSERT INTO public.movies (movieid, title, description, directorid, genreid, imageurl, featured) VALUES (6, 'The Internship', 'If you think you are too old to start a career in tech, this comedy is for you. It’s about to guys who lose their jobs and apply for Google’s internship program. Even though they know nothing about programming, they somehow get chosen and find themselves at Google headquarter in Mountain View, surrounded by young tech geniuses half their age.', 11, 2, NULL, false);
+INSERT INTO public.movies (movieid, title, description, directorid, genreid, imageurl, featured) VALUES (7, 'The Social Network', 'The Social Network is about the early stages of Facebook, how it grew as a business, and about the intellectual property lawsuits Mark Zuckerberg faced from his co-founders. There are lots of references to coding, algorithms and the ups and downs of tech startups.', 12, 3, NULL, true);
+INSERT INTO public.movies (movieid, title, description, directorid, genreid, imageurl, featured) VALUES (8, 'Tron', 'Tron is a cult movie for programmers. Jeff Bridges plays the programmer and video game developer  Kevin Flynn who gets sucked into the virtual world of computers. He uses some amazing coding skills to find his way back int the normal world. This movie is very retro and at the same time shows some amazing special effects considering it was launched in 1982.  There is a sequel titled Tron: Legacy that was released in 2010 and follows Flynn’’s adult son Sam.', 13, 5, NULL, true);
+INSERT INTO public.movies (movieid, title, description, directorid, genreid, imageurl, featured) VALUES (9, 'Hackers', 'This crime story is starring Angelina Jolie in her first leading role in a major film. It follows a group of high school students who use their programming skills for corporate extortion. The movie was released back in 1995 when the Internet was unfamiliar to the general public. Hence the movie went over the heads of people,  but it achieved cult classic status. It has some nice retro moments like when computer geeks get totally excited about 28.8Kbps Macs.', 14, 6, NULL, false);
+INSERT INTO public.movies (movieid, title, description, directorid, genreid, imageurl, featured) VALUES (10, 'Antitrust', 'Antitrust is a thriller about the dirty side of the software industry. A young programmer got a job at a large software company which is considered programmer''s heaven with significant salaries and an informal working environment. But soon he starts to unravel the terrible truth behind the company''s great success.', 15, 1, NULL, false);
+INSERT INTO public.movies (movieid, title, description, directorid, genreid, imageurl, featured) VALUES (11, 'Jobs', 'This movie is based on the life of Steve Jobs from being a college dropout to founding Apple out of a garage. It revolves around how Apple became the business enterprise that it is today. This movie not only shows the technical skills of Jobs but also his vision of changing the world. Recommended not only for Apple enthusiasts.', 16, 3, NULL, false);
+INSERT INTO public.movies (movieid, title, description, directorid, genreid, imageurl, featured) VALUES (12, 'Ex Machina', 'Ex Machina follows a young programmer who is invited to test an android named Ava. He quickly finds himself fascinated with her — but things take a turn. The movie revolves around how artificial intelligence can be used to make the world a better place. But it also warns us against the harmful effects of not using it correctly.', 17, 5, NULL, false);
+INSERT INTO public.movies (movieid, title, description, directorid, genreid, imageurl, featured) VALUES (13, 'Her', 'Heartbroken writer Theodore purchases a virtual assistent with AI that is designed to adapt and evolve like a human being. He decides that it should have a female voice, and she names herself Samantha. They bond over their discussions about love and life. This science-fiction romantic drama received numerous awards and nominations', 18, 7, NULL, false);
+INSERT INTO public.movies (movieid, title, description, directorid, genreid, imageurl, featured) VALUES (14, 'The Girl with the Dragon Tattoo', 'This thriller is based on a novel by Swedish writer Stieg Larsson. Rooney Mara plays a tatted up computer hacker who is anti-social but extremely efficient. She assists a journalist in his investigation to find out what happened to a girl who disappeared 40 years ago.', 12, 1, NULL, false);
+
+
+--
+-- TOC entry 3617 (class 0 OID 16442)
+-- Dependencies: 218
+-- Data for Name: user_movies; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.user_movies (usermovieid, userid, movieid) VALUES (1, 10, 4);
+INSERT INTO public.user_movies (usermovieid, userid, movieid) VALUES (2, 10, 9);
+INSERT INTO public.user_movies (usermovieid, userid, movieid) VALUES (3, 10, 14);
+INSERT INTO public.user_movies (usermovieid, userid, movieid) VALUES (4, 11, 6);
+INSERT INTO public.user_movies (usermovieid, userid, movieid) VALUES (5, 11, 12);
+INSERT INTO public.user_movies (usermovieid, userid, movieid) VALUES (6, 11, 13);
+INSERT INTO public.user_movies (usermovieid, userid, movieid) VALUES (7, 12, 4);
+INSERT INTO public.user_movies (usermovieid, userid, movieid) VALUES (8, 12, 11);
+
+
+--
+-- TOC entry 3615 (class 0 OID 16435)
+-- Dependencies: 216
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.users (userid, username, password, email, birth_date) VALUES (10, 'actionLover', 'badpw123', 'actionLover@yahoo.com', '1963-02-03');
+INSERT INTO public.users (userid, username, password, email, birth_date) VALUES (11, 'angie', 'raute', 'angela_merkel@gmail.com', '1954-07-17');
+INSERT INTO public.users (userid, username, password, email, birth_date) VALUES (12, 'hangman123', 'wtf!idk', 'max_meyer96@gmail.com', '1999-02-23');
+
+
+--
+-- TOC entry 3628 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: directors_directorid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.directors_directorid_seq', 18, true);
+
+
+--
+-- TOC entry 3629 (class 0 OID 0)
+-- Dependencies: 209
+-- Name: genres_genreid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.genres_genreid_seq', 7, true);
+
+
+--
+-- TOC entry 3630 (class 0 OID 0)
+-- Dependencies: 213
+-- Name: movies_movieid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.movies_movieid_seq', 17, true);
+
+
+--
+-- TOC entry 3631 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: user_movies_usermovieid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.user_movies_usermovieid_seq', 8, true);
+
+
+--
+-- TOC entry 3632 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: users_userid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.users_userid_seq', 12, true);
+
+
+--
+-- TOC entry 3458 (class 2606 OID 16412)
+-- Name: directors directors_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.directors
+    ADD CONSTRAINT directors_pkey PRIMARY KEY (directorid);
+
+
+--
+-- TOC entry 3456 (class 2606 OID 16403)
+-- Name: genres genres_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.genres
+    ADD CONSTRAINT genres_pkey PRIMARY KEY (genreid);
+
+
+--
+-- TOC entry 3460 (class 2606 OID 16423)
+-- Name: movies movies_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.movies
+    ADD CONSTRAINT movies_pkey PRIMARY KEY (movieid);
+
+
+--
+-- TOC entry 3464 (class 2606 OID 16447)
+-- Name: user_movies user_movies_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_movies
+    ADD CONSTRAINT user_movies_pkey PRIMARY KEY (usermovieid);
+
+
+--
+-- TOC entry 3462 (class 2606 OID 16440)
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (userid);
+
+
+--
+-- TOC entry 3466 (class 2606 OID 16429)
+-- Name: movies directorkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.movies
+    ADD CONSTRAINT directorkey FOREIGN KEY (directorid) REFERENCES public.directors(directorid);
+
+
+--
+-- TOC entry 3465 (class 2606 OID 16424)
+-- Name: movies genrekey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.movies
+    ADD CONSTRAINT genrekey FOREIGN KEY (genreid) REFERENCES public.genres(genreid);
+
+
+--
+-- TOC entry 3468 (class 2606 OID 16453)
+-- Name: user_movies moviekey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_movies
+    ADD CONSTRAINT moviekey FOREIGN KEY (movieid) REFERENCES public.movies(movieid);
+
+
+--
+-- TOC entry 3467 (class 2606 OID 16448)
+-- Name: user_movies userkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_movies
+    ADD CONSTRAINT userkey FOREIGN KEY (userid) REFERENCES public.users(userid);
+
+
+-- Completed on 2021-11-05 16:25:17 CET
+
+--
+-- PostgreSQL database dump complete
+--
+
