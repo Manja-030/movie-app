@@ -9,6 +9,19 @@ app.use(morgan("common"));
 app.use(express.static("public"));
 app.use(bodyParser.json());
 
+//Integrating mongoose:
+const mongoose = require("mongoose");
+const Models = require("./models.js");
+
+const Movies = Models.Movie;
+const Users = Models.User;
+
+mongoose.connect("mongodb://localhost:27017/techFlixDB", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+// ????
 app.get("/", (req, res) => {
   res.send("Welcome to TechFlix!");
 });
