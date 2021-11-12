@@ -40,45 +40,76 @@
           JSON object holding data about the user to add, structured like:
           <br />
           { <br />
-          name: "Jack Bauer“, <br />
-          username: "actionLover“,<br />
-          password: "badpw123“, <br />
-          email: "actionLover@yahoo.com" <br />
-          }
+          Username: "actionLover“,<br />
+          Password: "badpw123“, <br />
+          Email: "actionLover@yahoo.com" <br />
+          Birthday: "02/04/1973" }
         </td>
         <td>
           JSON object holding data about the user that was added, structured
           like: <br />
           { <br />
-          ID: "4ef03c6ac21858b16a8ba0dc", name: "Jack Bauer“, <br />
-          username: "actionLover“,<br />
-          password: "badpw123“, <br />
-          email: "actionLover@yahoo.com", <br />
-          favorites: "null" }
+          "Username": "actionLover", <br />
+          "Password": "badpw123", <br />
+          "Email": "actionLover@yahoo.com", <br />
+          "FavMovies": [], <br />
+          "_id": "618cfe75d43b93b24523934f", <br />
+          "__v": 0 <br />
+          }
         </td>
       </tr>
       <tr>
         <td>Update User Info</td>
-        <td>users/:username/:infoToUpdate</td>
+        <td>users/:Username</td>
         <td>PUT</td>
-        <td>None</td>
-        <td>A text message indicating if the username was updated.</td>
+        <td>
+          JSON object holding data the user wishes to update with at least one
+          of the following fields: Username, Email, Password, Birthdate.<br />
+          Structured like:<br />
+          "Password": "secretpw"
+        </td>
+        <td>
+          JSON object holding data of updated user profile, stuctured like.<br />
+          {<br />
+          "_id": "618cfe75d43b93b24523934f", <br />
+          "Username": "hans", <br />
+          "Password": "secretpw", <br />
+          "Email": "hans@gmail.com", <br />
+          "FavoriteMovies": [], <br />
+          "__v": 0 <br />
+          }
+        </td>
       </tr>
       <tr>
         <td>Remove User by Username</td>
-        <td>/users/:username</td>
+        <td>/users/:Username</td>
         <td>DELETE</td>
         <td>None</td>
-        <td>A text message indicating whether the user was removed.</td>
+        <td>
+          A text message indicating whether the user was removed. Like: <br />
+          "User budweiser was deleted."
+        </td>
       </tr>
       <tr>
         <td>Add Movie to List of Favorites</td>
-        <td>/users/:username/favorites/:movieID</td>
+        <td>/users/:Username/movies/:MovieID</td>
         <td>POST</td>
         <td>None</td>
         <td>
-          A text message indicating whether the movie was added to the favorites
-          list and the updated list of favorite movies.
+          JSON object holding data about the user with an updated list of
+          favourite movies, structured like: <br />
+          { <br />
+          "_id": "618927f05ac4c4e827948d19", <br />
+          "Username": "actionLover", <br />
+          "Password": "badpw123", <br />
+          "Email": "actionLover@yahoo.com", <br />
+          "Birthday": "1963-02-03T00:00:00.000Z", <br />
+          "FavMovies": [ <br />
+          "618909605ac4c4e827948d0e", <br />
+          "61890b195ac4c4e827948d0f", <br />
+          "618911b75ac4c4e827948d14", <br />
+          "6189128f5ac4c4e827948d15" ]<br />
+          }
         </td>
       </tr>
       <tr>
@@ -87,8 +118,17 @@
         <td>DELETE</td>
         <td>none</td>
         <td>
-          A text message indicating whether the movie was removed from the list
-          and the updated list of favorite movies.
+          { <br />
+          "_id": "618927f05ac4c4e827948d19", <br />
+          "Username": "actionLover", <br />
+          "Password": "badpw123", <br />
+          "Email": "actionLover@yahoo.com", <br />
+          "Birthday": "1963-02-03T00:00:00.000Z", <br />
+          "FavMovies": [ <br />
+          "618909605ac4c4e827948d0e", <br />
+          "61890b195ac4c4e827948d0f", <br />
+          "618911b75ac4c4e827948d14", ] <br />
+          }
         </td>
       </tr>
     </table>
@@ -111,42 +151,49 @@
       </tr>
       <tr>
         <td>Get Data about Specific Movie by Title</td>
-        <td>/movies/:title</td>
+        <td>//movies/:Title</td>
         <td>GET</td>
         <td>None</td>
         <td>
           JSON object holding data about a single movie. Example: <br />
           {<br />
-          title: "The social Network“, <br />
-          director: {<br />
-          name: "David Fincher“, <br />
-          born: "1962“, <br />
-          dead: "null“, <br />
-          bio:“David Fincher was born in Denver, Colorado, and raised in Marin
+          "Title": "The social Network“, <br />
+          "_id": "6189128f5ac4c4e827948d15", <br />
+          "Description": „This biographical drama it portrays the founding of
+          Facebook and the resulting lawsuits."<br />
+          "Director": {<br />
+          "Name": "David Fincher“, <br />
+          "Birth": "1962“, <br />
+          "Bio":“David Fincher was born in Denver, Colorado, and raised in Marin
           County, California.<br />
           When he was 18 years old he went to work at Korty Films. He also
           directed TV commercials <br />for clients like Nike, Coca-Cola and
           Chanel and music videos for Madonna, The Rolling Stones,<br />
           Michael Jackson, Aerosmith and many others.“ <br />
           },<br />
-          genre: "1",<br />
-          image:
+          "Genre": [ <br />
+          "618b838e4c563c01cfdafbb0" <br />
+          ], <br />
+          "Image":
           „https://upload.wikimedia.org/wikipedia/en/8/8c/The_Social_Network_film_poster.png“,
           <br />
-          description: „This biographical drama it portrays the founding of
-          Facebook and the resulting lawsuits."<br />}
+          "Actors": [], <br />
+          "Featured": false, <br />
+          "ReleaseYear": "2013" <br />
+          }
         </td>
       </tr>
       <tr>
         <td>Get Data about Genre by Name</td>
-        <td>/movies/genres/:name</td>
+        <td>/genres/:Name</td>
         <td>GET</td>
         <td>None</td>
         <td>
           JSON object holding data about a movie genre. Example: <br />
           { <br />
-          id: "1", name: "biopic", <br />
-          description: "A film that dramatizes the life of a non-fictional
+          "_id": "618b838e4c563c01cfdafbb0", <br />
+          "Name": "biopic", <br />
+          "Description": "A film that dramatizes the life of a non-fictional
           person. Attempts to comprehensively tell a<br />
           single person's life story or at least the most historically important
           years of their lives."<br />
@@ -155,21 +202,21 @@
       </tr>
       <tr>
         <td>Get Data about Director by Name</td>
-        <td>/movies/directors/:name</td>
+        <td>/movies/director/:Name</td>
         <td>GET</td>
         <td>None</td>
         <td>
           JSON object holding data about a specific director. Example:<br />
-          director: {<br />
-          name: "David Fincher“, <br />
-          born: "1962“, <br />
-          dead: "null“, <br />
-          bio:“David Fincher was born in Denver, Colorado, and raised in Marin
-          County, California.<br />
-          When he was 18 years old he went to work at Korty Films. He also
-          directed TV commercials <br />for clients like Nike, Coca-Cola and
-          Chanel and music videos for Madonna, The Rolling Stones,<br />
-          Michael Jackson, Aerosmith and many others.“ <br />
+          { <br />
+          "Name": "David Fincher", <br />
+          "Bio": "David Fincher is an American film director. For The Social
+          Network he won the Golden Globe Award. Big commercial successes were
+          The Curious Case of Benjamin Button and Gone Girl. For the Netflix
+          series House of Cards David Fincher served as an executive producer
+          and director. Fincher also directed TV commercials for clients like
+          Nike, Coca-Cola and Chanel and music videos for Madonna, The Rolling
+          Stones, Michael Jackson, Aerosmith and many others.",<br />
+          "Birth": "1962" <br />
           }
         </td>
       </tr>
