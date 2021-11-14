@@ -92,7 +92,7 @@ app.put("/users/:Username", (req, res) => {
         console.error(error);
         res.status(500).send("Error: " + error);
       } else {
-        res.json(updatedUser);
+        res.send("User profile was updated: " + updatedUser);
       }
     }
   );
