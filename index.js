@@ -8,6 +8,12 @@ const app = express();
 app.use(morgan("common"));
 app.use(express.static("public"));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+let auth = require("./auth")(app);
+
+const passport = require("passport");
+require("./passport");
 
 //Integrating mongoose:
 const mongoose = require("mongoose");
@@ -99,16 +105,20 @@ app.put("/users/:Username", (req, res) => {
 });
 
 // Get data about all movies:
-app.get("/movies", (req, res) => {
-  Movies.find()
-    .then(movies => {
-      res.status(201).json(movies);
-    })
-    .catch(error => {
-      console.error(error);
-      res.status(500).send("Error: " + error);
-    });
-});
+app.get(
+  "/movies",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Movies.find()
+      .then(movies => {
+        res.status(201).json(movies);
+      })
+      .catch(error => {
+        console.error(error);
+        res.status(500).send("Error: " + error);
+      });
+  }
+);
 
 //Get data about a single movie:
 app.get("/movies/:Title", (req, res) => {
