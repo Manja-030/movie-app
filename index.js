@@ -10,10 +10,10 @@ app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-let auth = require("./auth.js")(app);
+let auth = require("./auth")(app);
 
 const passport = require("passport");
-require("./passport.js");
+require("./passport");
 
 //Integrating mongoose:
 const mongoose = require("mongoose");
