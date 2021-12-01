@@ -5,8 +5,6 @@ const express = require("express"),
 
 const app = express();
 
-let auth = require("./auth")(app);
-
 const passport = require("passport");
 app.use(passport.initialize());
 require("./passport");
@@ -15,6 +13,8 @@ app.use(morgan("common"));
 app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+let auth = require("./auth")(app);
 
 //Integrating mongoose:
 const mongoose = require("mongoose");
