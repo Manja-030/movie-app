@@ -59,6 +59,35 @@
         </td>
       </tr>
       <tr>
+        <td>Login user</td>
+        <td>/login</td>
+        <td>POST</td>
+        <td>
+          JSON object holding data about the user to add, structured like:
+          <br />
+          { <br />
+          Username: "actionLover“,<br />
+          Password: "badpw123“, <br />
+        </td>
+        <td>
+          JSON object holding data about the user that was added, structured
+          like: <br />
+          { <br />
+          "Username": "actionLover", <br />
+          "Password": "badpw123", <br />
+          "Email": "actionLover@yahoo.com", <br />
+          "FavMovies": [], <br />
+          "_id": "618cfe75d43b93b24523934f", <br />
+          "__v": 0 <br />
+          "token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWE2NjhmMzlhYmRm<br />
+          ZTdjNGY4Yzk3MTkiLCJVc2VybmFtZSI6ImVsc2EiLCJQYXNzd29yZCI6IjEzNTc5IiwiRW1<br />
+          haWwiOiJlbHNhQGdtYWlsLmNvbSIsIkJpcnRoZGF5IjoiMTk4Mi0wMy0wNVQwMDowMDowMC4wMD<br />
+          BaIiwiRmF2TW92aWVzIjpbXSwiX192IjowLCJpYXQiOjE2MzgzNzcwNzEsImV4cCI6MTYzODk4MTg3<br />
+          MSwic3ViIjoiZWxzYSJ9.7aUe1TY1PlX-f6nfltcQEDOqbv8JGPlayrfQTiE9su4" }
+        </td>
+      </tr>
+      <tr>
         <td>Update User Info</td>
         <td>users/:Username</td>
         <td>PUT</td>
