@@ -1,7 +1,7 @@
-const express = require("express"),
-  morgan = require("morgan"),
-  bodyParser = require("body-parser"),
-  uuid = require("uuid");
+const express = require("express");
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
+const uuid = require("uuid");
 
 const { check, validationResult } = require("express-validator");
 
@@ -35,7 +35,7 @@ const Users = Models.User;
   useUnifiedTopology: true
 });*/
 
-mongoose.connect("process.env.CONNECTION_URI", {
+mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -264,6 +264,7 @@ app.delete(
   }
 );
 
+// Error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something broke!");
