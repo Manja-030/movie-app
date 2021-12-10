@@ -32,15 +32,15 @@ const Genres = Models.Genre;
 const Users = Models.User;
 
 //To connect to local database (e.g. for testing purpose):
-mongoose.connect("mongodb://localhost:27017/techFlixDB", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
-
-/*mongoose.connect(process.env.CONNECTION_URI, {
+/*mongoose.connect("mongodb://localhost:27017/techFlixDB", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });*/
+
+mongoose.connect(process.env.CONNECTION_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 // landing page
 app.get("/", (req, res) => {
