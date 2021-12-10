@@ -19,6 +19,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const cors = require("cors");
 app.use(cors());
 
+require("dotenv").config();
+
 let auth = require("./auth")(app);
 
 //Integrating mongoose:
