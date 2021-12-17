@@ -10,7 +10,7 @@
 
 To get started is to clone the repository:
 
-### clone the repository
+### Clone the repository
 
 ```
 git clone https://github.com/Manja-030/movie-app.git
@@ -28,10 +28,10 @@ cd movie-app
 npm install
 ```
 
-### start the server
+### Start the server
 
 ```
-yarn run dev??????????
+node server
 ```
 
 Note: It is recommended to install nodemon for livereloading - It watches for any changes in your node.js app and automatically restarts the server
@@ -48,7 +48,7 @@ Note: It is recommended to install nodemon for livereloading - It watches for an
 - Do `git commit -m" reason for commit"`
 - Lastly, do `git push heroku master`.
 
-Please note that you may also use the [Herko Dashboard](https://dashboard.heroku.com) to set or modify the configurations for your application.
+Please note that you may also use the [Heroko Dashboard](https://dashboard.heroku.com) to set or modify the configurations for your application.
 
 ## Test the API
 I used postman to test the api.
