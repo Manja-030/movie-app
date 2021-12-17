@@ -55,12 +55,19 @@ I used postman to test the api.
 To use postman, go to the project doc folder and import the docs file into your postman client to ease the testing
 
 ## User Endpoints
- - Login - 
- - Register - 
+ - Add new user - https://tech-and-popcorn.herokuapp.com/users
+ - Remove user - https://tech-and-popcorn.herokuapp.com/users/:Username
+ - Update userinfo - https://tech-and-popcorn.herokuapp.com/users/:Username
+ - Login - https://tech-and-popcorn.herokuapp.com/login
+ - Add or remove movie from list of favorites - https://tech-and-popcorn.herokuapp.com/users/:Username/movies/:MovieID
 
 ## Movie Endpoints
 
-- Get all movies - 
+- Get all movies - https://tech-and-popcorn.herokuapp.com/movies
+- Get specific movie - https://tech-and-popcorn.herokuapp.com/movies/:Title
+- Get director - https://tech-and-popcorn.herokuapp.com//movies/director/:Name
 
+## Genre Endpoints
 
+- Get genre - https://tech-and-popcorn.herokuapp.com/genres/:Name
 
