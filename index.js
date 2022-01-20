@@ -153,7 +153,7 @@ app.put(
 );
 
 // Get data about all movies:
-/*app.get(
+app.get(
   "/movies",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
@@ -166,8 +166,9 @@ app.put(
         res.status(500).send("Error: " + error);
       });
   }
-);*/
+);
 
+/*For testing purposes:
 app.get('/movies', function (req, res) {
   Movies.find()
     .then(function (movies) {
@@ -178,6 +179,7 @@ app.get('/movies', function (req, res) {
       res.status(500).send('Error: ' + error);
     });
 });
+*/
 
 //Get data about a single movie:
 app.get(
