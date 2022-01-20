@@ -153,21 +153,21 @@ app.put(
 );
 
 // Get data about all movies:
-app.get(
-  '/movies',
-  passport.authenticate('jwt', { session: false }),
+/*app.get(
+  "/movies",
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Movies.find()
-      .then((movies) => {
+      .then(movies => {
         res.status(201).json(movies);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
-        res.status(500).send('Error: ' + error);
+        res.status(500).send("Error: " + error);
       });
   }
-);
-/*
+);*/
+
 app.get('/movies', function (req, res) {
   Movies.find()
     .then(function (movies) {
@@ -177,7 +177,7 @@ app.get('/movies', function (req, res) {
       console.error(error);
       res.status(500).send('Error: ' + error);
     });
-});*/
+});
 
 //Get data about a single movie:
 app.get(
