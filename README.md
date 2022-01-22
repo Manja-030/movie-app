@@ -65,7 +65,7 @@ To use postman, go to the project doc folder and import the docs file into your 
 
 - Get all movies - https://tech-and-popcorn.herokuapp.com/movies
 - Get specific movie - https://tech-and-popcorn.herokuapp.com/movies/:Title
-- Get director - https://tech-and-popcorn.herokuapp.com//movies/director/:Name
+- Get director - https://tech-and-popcorn.herokuapp.com/movies/director/:Name
 
 ## Genre Endpoints
 
