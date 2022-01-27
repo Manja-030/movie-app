@@ -233,6 +233,7 @@ app.get(
       .catch(error => {
         console.error(error);
         res.status(500).send("Error: " + error);
+        console.log(req.params.Name);
       });
   }
 );
