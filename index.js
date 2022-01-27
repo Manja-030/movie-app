@@ -226,7 +226,8 @@ app.get(
   //passport.authenticate("jwt", { session: false }),
   (req, res) => {
     console.log(req.params.Name);
-    Genres.findOne({ id: ObjectID(req.params.Name) })
+    Genres.findOne({ id: ObjectID(` ${req.params.Name}`) })
+
       .then(genre => {
         res.json(genre);
       })
