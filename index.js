@@ -205,6 +205,21 @@ app.get(
   }
 );
 
+app.get(
+  "/genres",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Genres.find()
+      .then(genres => {
+        res.status(201).json(genres);
+      })
+      .catch(error => {
+        console.error(error);
+        res.status(500).send("Error: " + error);
+      });
+  }
+);
+
 // Get data about a genre by its name:
 app.get(
   "/genres/:Name",
