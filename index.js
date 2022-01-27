@@ -221,7 +221,8 @@ app.get(
 );
 
 // Get data about a genre by its name:
-app.get(
+{
+  /*app.get(
   "/genres/:Name",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
@@ -234,7 +235,8 @@ app.get(
         res.status(500).send("Error: " + error);
       });
   }
-);
+);*/
+}
 
 app.get(
   "/genres/:id",
