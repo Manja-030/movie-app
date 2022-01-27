@@ -223,7 +223,7 @@ app.get(
 
 app.get(
   "/genres/:id",
-  passport.authenticate("jwt", { session: false }),
+  //passport.authenticate("jwt", { session: false }),
   (req, res) => {
     console.log(req.params.Name);
     Genres.findOne({ id: ObjectID("req.params.Name") })
