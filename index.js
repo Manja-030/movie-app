@@ -32,16 +32,16 @@ const Genres = Models.Genre;
 const Users = Models.User;
 
 //To connect to local database (e.g. for testing purpose):
-mongoose.connect('mongodb://localhost:27017/techFlixDB', {
+/*mongoose.connect('mongodb://localhost:27017/techFlixDB', {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+});*/
+
+//To connect to API on Heroku:
+mongoose.connect(process.env.CONNECTION_URI, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 });
-
-//To connect to API on Heroku:
-/*mongoose.connect(process.env.CONNECTION_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});*/
 
 // landing page
 app.get('/', (req, res) => {
@@ -221,8 +221,7 @@ app.get(
 	'/genres/:id',
 	//passport.authenticate("jwt", { session: false }),
 	(req, res) => {
-		Genres.findOne({ id: new ObjectId(`${req.params.name}`) })
-
+		Genres.findOne({ id: req.params.id })
 			.then((genre) => {
 				res.json(genre);
 			})
