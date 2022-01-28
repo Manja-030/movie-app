@@ -32,15 +32,16 @@ const Genres = Models.Genre;
 const Users = Models.User;
 
 //To connect to local database (e.g. for testing purpose):
-/*mongoose.connect("mongodb://localhost:27017/techFlixDB", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});*/
-
-mongoose.connect(process.env.CONNECTION_URI, {
+mongoose.connect("mongodb://localhost:27017/techFlixDB", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
+
+//To connect to API on Heroku:
+/*mongoose.connect(process.env.CONNECTION_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});*/
 
 // landing page
 app.get("/", (req, res) => {
@@ -251,7 +252,7 @@ app.get(
       .catch(error => {
         console.error(error);
         res.status(500).send("Error: " + error);
-        console.log(req.params.Name);
+        //console.log(req.params.Name);
       });
   }
 );
