@@ -240,7 +240,7 @@ app.get(
 }
 
 app.get(
-  "/genres/:id",
+  //  "/genres/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     //console.log(req.params.Name);
