@@ -220,8 +220,9 @@ app.get(
 app.get(
 	'/genres/:id',
 	//passport.authenticate("jwt", { session: false }),
-	(req, res) => {
-		Genres.findOne({ id: ObjectID(` ${req.params.name}`) })
+	(req, res) => 
+
+    Genres.findOne({id: new ObjectID(`${req.params.name}`)})
 
 			.then((genre) => {
 				res.json(genre);
