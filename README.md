@@ -69,5 +69,5 @@ To use postman, go to the project doc folder and import the docs file into your 
 
 ## Genre Endpoints
 
-- Get genre - https://tech-and-popcorn.herokuapp.com/genres/:Name
+- Get genre - https://tech-and-popcorn.herokuapp.com/genres/:ID
 
