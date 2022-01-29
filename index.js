@@ -184,6 +184,8 @@ app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req
 		});
 });
 
+// get data about all genres
+
 app.get(
 	'/genres',
 	//passport.authenticate("jwt", { session: false }),
@@ -216,7 +218,7 @@ app.get(
   }
 );*/
 }
-
+//get data about genre by id:
 app.get(
 	'/genres/:id',
 	//passport.authenticate("jwt", { session: false }),
@@ -245,7 +247,7 @@ app.get('/movies/director/:Name', passport.authenticate('jwt', { session: false 
 		});
 });
 
-// Add movie to list of favourites:
+// Add movie to list of favorites:
 app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
 	Users.findOneAndUpdate(
 		{ Username: req.params.Username },
@@ -262,7 +264,7 @@ app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { sess
 	);
 });
 
-// Remove movie from list of favourites:
+// Remove movie from list of favorites:
 app.delete('/users/:Username/Movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
 	Users.findOneAndUpdate(
 		{ Username: req.params.Username },
