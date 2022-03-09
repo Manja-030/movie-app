@@ -199,11 +199,25 @@ app.get('/movies', function (req, res) {
 */
 
 //Get data about a single movie:
-app.get(
+/*app.get(
   '/movies/:Title',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Movies.findOne({ Title: req.params.Title })
+      .then((movie) => {
+        res.json(movie);
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).send('Error: ' + error);
+      });
+  }
+);*/
+app.get(
+  '/movies/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Movies.findOne({ _id: req.params.id })
       .then((movie) => {
         res.json(movie);
       })
@@ -255,6 +269,7 @@ app.get(
   (req, res) => {
     Genres.findOne({ id: req.params.id })
       .then((genre) => {
+        console.log(genre);
         res.json(genre);
       })
       .catch((error) => {
