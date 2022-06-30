@@ -10,6 +10,7 @@ To build the REST API i used for the server side:
 - Express
 - MongoDB
 User data is verified using LocalStrategy and JWTStrategy from Passport.js.
+Bcrypt is used to bcrypt passwords.
 
 ## Getting Started
 
