@@ -89,7 +89,7 @@
       </tr>
       <tr>
         <td>Update User Info</td>
-        <td>users/:Username</td>
+        <td>/users/:Username</td>
         <td>PUT</td>
         <td>
           JSON object holding data the user wishes to update with at least one
@@ -173,14 +173,14 @@
       </tr>
       <tr>
         <td>Get List of all Movies</td>
-        <td>/movies</td>
+        <td>/movies/</td>
         <td>GET</td>
         <td>None</td>
         <td>JSON object holding data about all movies.</td>
       </tr>
       <tr>
         <td>Get Data about Specific Movie by Title</td>
-        <td>//movies/:Title</td>
+        <td>/movies/:id</td>
         <td>GET</td>
         <td>None</td>
         <td>
@@ -249,6 +249,42 @@
           }
         </td>
       </tr>
+    </table>
+
+    <h2>Genre Requests</h2>
+    <table>
+      <tr>
+        <th>Business Logic</th>
+        <th>URL</th>
+        <th>HTTP Method</th>
+        <th>Request body data format</th>
+        <th>Response body data format</th>
+      </tr>
+      <tr>
+        <td>Get List of all Genres</td>
+        <td>/genres</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>JSON object holding data about all movies.</td>
+      </tr>
+      <tr>
+        <td>Get Data about Genre by Name</td>
+        <td>/genres/:id</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>
+          JSON object holding data about a movie genre. Example: <br />
+          { <br />
+          "_id": "618b838e4c563c01cfdafbb0", <br />
+          "Name": "biopic", <br />
+          "Description": "A film that dramatizes the life of a non-fictional
+          person. Attempts to comprehensively tell a<br />
+          single person's life story or at least the most historically important
+          years of their lives."<br />
+          }
+        </td>
+      </tr>
+      
     </table>
   </body>
 </html>
