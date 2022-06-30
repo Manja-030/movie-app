@@ -32,13 +32,18 @@ npm install
 ```
 ### Install mongodb
 
+```
+npm install
+```
+
 ### Start the server
 
 ```
 node server
 ```
 
-Note: It is recommended to install nodemon for livereloading - It watches for any changes in your node.js app and automatically restarts the server
+Note: It is recommended to install nodemon for livereloading - It watches for any changes in your node.js app and automatically restarts the server.
+For a list of dependencies and middleware refer to 
 
 ## Deployment
 ### Deployment to Heroku
