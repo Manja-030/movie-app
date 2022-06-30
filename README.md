@@ -1,14 +1,17 @@
-# Server-side component of Movie App
+# Movie API
+
+## Description
+This is the server-side of a movies web application. The web application will provide users with access to information about different movies and their directors, and movie genres. Users will be able to sign up, update their personal information, create a list of their favorite movies and remove movies from their list.
 
 ## Tools
 
+To build the REST API i used for the server side:
 - NodeJS
 - Express
 - MongoDB
+User data is verified using LocalStrategy and JWTStrategy from Passport.js.
 
 ## Getting Started
-
-To get started is to clone the repository:
 
 ### Clone the repository
 
@@ -27,6 +30,7 @@ cd movie-app
 ```
 npm install
 ```
+### Install mongodb
 
 ### Start the server
 
