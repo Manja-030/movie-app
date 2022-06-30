@@ -43,7 +43,7 @@ node server
 ```
 
 Note: It is recommended to install nodemon for livereloading - It watches for any changes in your node.js app and automatically restarts the server.
-For a list of dependencies and middleware refer to 
+For a list of dependencies and middleware refer to the file [package.json](https://github.com/Manja-030/movie-app/blob/main/package.json).
 
 ## Deployment
 ### Deployment to Heroku
